@@ -9,13 +9,19 @@
     <h1>Hello my friend</h1>
     <h2>Blog about coding in Python and Django</h2>
 </div>
+
+{% comment "Komentarz autora" %}
+Wpis komenatarza dla innych
+{% endcomment %}
+
+{% for post in posts %}
 <div>
-    <p>Here is information about me. LOrem ipsum bla bla bla</p>
-    <p>Second paraghrap</p>
-    <em>em tag has been used here</em><br>
-    <strong>strong keywaord is herer</strong>
-    <a href="https://google.com">google is here</a>
+    <p>Opublikowany: {{ post.publish_date }}</p>
+    <h2><a href="">{{ post.title }}</a></h2>
+    <em>{{ post.text|linebreaksbr }}</em>
 </div>
+{% endfor %}
+
 <div>
     <ul>
         <li>Element listy</li>
