@@ -1,35 +1,13 @@
-<!DOCTYPE html>
-<html lang="pl">
-<head>
-    <meta charset="UTF-8">
-    <title>Blog Pythonowy</title>
-</head>
-<body>
-<div>
-    <h1>Hello my friend</h1>
-    <h2>Blog about coding in Python and Django</h2>
-</div>
+{% extends 'blog/base.html' %}
 
-{% comment "Komentarz autora" %}
-Wpis komenatarza dla innych
-{% endcomment %}
-
-{% for post in posts %}
-<div>
-    <p>Opublikowany: {{ post.publish_date }}</p>
-    <h2><a href="">{{ post.title }}</a></h2>
-    <em>{{ post.text|linebreaksbr }}</em>
-</div>
-{% endfor %}
-
-<div>
-    <ul>
-        <li>Element listy</li>
-        <li>Element listy</li>
-        <li>Element listy</li>
-        <li>Element listy</li>
-    </ul>
-</div>
-
-</body>
-</html>
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                <p>Opublikowany: {{ post.publish_date }}</p>
+            </div>
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <em>{{ post.text|linebreaksbr }}</em>
+        </div>
+    {% endfor %}
+{% endblock %}
